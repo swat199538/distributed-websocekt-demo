@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>消息客户端1</title>
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+</head>
+<body>
+
+<textarea style="width: 800px; height: 400px;" id="message">
+</textarea>
+
+<input id="send" type="text" >
+<button id="button">发送</button>
+
+</body>
+<script>
+    var ws = new WebSocket("ws://192.168.3.195:9501");
+
+    ws.onopen = function(evt) {
+    };
+
+    ws.onmessage = function(evt) {
+        console.log("Received Message: " + evt.data);
+        var old = $("#message").val()
+        var newMessage = old +'\r\n' + evt.data;
+        $("#message").val(newMessage);
+    };
+
+    ws.onclose = function(evt) {
+        console.log("Connection closed.");
+    };
+
+    $("#button").on('click', function () {
+       var message =  $("#send").val();
+       var data = message.split('://');
+       var json;
+
+      if (data[0] == 'login'){
+          json = {"cmd":"login", "user":data[1]};
+      } else {
+          data = message.split('::');
+          json = {
+              "cmd":"chat",
+              "to":data[0],
+              "msg":data[1]
+          };
+      }
+
+      ws.send(JSON.stringify(json));
+
+    });
+
+</script>
+</html>

@@ -2,7 +2,7 @@
 
 ## 基于swoole和redis的分布式websocket demo，效果如图:
 
-![效果图](https://www.codingfish.xyz/wp-content/uploads/2018/05/demo.png)
+![效果图](https://www.codingfish.xyz/wp-content/uploads/2018/05/demo-1.png)
 
 
 ## 使用demo:

@@ -7,7 +7,7 @@
  */
 
 //本机ip地址
-define('LOCALHOST', '192.168.3.48');
+define('LOCALHOST', '192.168.3.78');
 //fd映射登录名zSetKey
 define('MEMBER_FD_KEY', LOCALHOST.'_member');
 //定义proxy服务器IP
